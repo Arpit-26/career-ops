@@ -1,0 +1,82 @@
+{
+  "name": "career-ops",
+  "version": "1.40.0",
+  "description": "Configuration, dependencies, and tooling specification for career-ops.",
+  "runtime": {
+    "node": ">=22.13.0",
+    "npm": ">=10.0.0",
+    "recommended_node": "22.x LTS"
+  },
+  "ai_agent_cli": {
+    "primary": "antigravity",
+    "command": "agy",
+    "path": "./bin/agy",
+    "supported_alternatives": [
+      "claude",
+      "codex",
+      "opencode",
+      "grok",
+      "kimi",
+      "qwen"
+    ]
+  },
+  "dependencies": {
+    "root": {
+      "@google/generative-ai": "^0.24.1",
+      "dotenv": "^18.0.4",
+      "js-yaml": "^5.3.0",
+      "playwright": "1.64.1",
+      "undici": "^7.30.1"
+    },
+    "web": {
+      "next": "16.4.1",
+      "react": "^19.2.5",
+      "react-dom": "^19.2.5",
+      "@paper-design/shaders-react": "^0.0.80",
+      "class-variance-authority": "^0.7.1",
+      "clsx": "^2.1.1",
+      "js-yaml": "^5.4.1",
+      "lucide-react": "^1.68.0",
+      "pdfjs-dist": "^6.5.438",
+      "playwright-core": "^1.61.0",
+      "react-markdown": "^10.0.0",
+      "remark-gfm": "^4.0.0",
+      "tailwind-merge": "^3.7.0"
+    }
+  },
+  "required_tools": [
+    {
+      "name": "Playwright Chromium & System Dependencies",
+      "purpose": "Headless browser extraction, liveness checking, and PDF CV generation",
+      "install_command": "npx playwright install --with-deps chromium"
+    },
+    {
+      "name": "Antigravity Bridge CLI",
+      "purpose": "Headless AI agent CLI execution for evaluations and CV tailoring",
+      "path": "bin/agy",
+      "verify_command": "node bin/agy-bridge.mjs --version"
+    },
+    {
+      "name": "Tectonic (Optional)",
+      "purpose": "Standalone LaTeX engine for compiled PDF CVs",
+      "install_command": "node install-latex-engine.mjs"
+    }
+  ],
+  "ports": {
+    "web_dashboard": 3000,
+    "web_dashboard_fallback": 3001
+  },
+  "setup_commands": [
+    "npm install",
+    "cd web && npm install",
+    "npx playwright install --with-deps chromium",
+    "node doctor.mjs"
+  ],
+  "run_commands": {
+    "web_ui": "npm run ui",
+    "web_ui_external": "node scripts/ui-server.mjs --host 0.0.0.0 --port 3000",
+    "doctor": "node doctor.mjs",
+    "scan": "npm run scan",
+    "evaluate": "node auto-pipeline.mjs"
+  }
+}
