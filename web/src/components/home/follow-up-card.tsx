@@ -78,6 +78,7 @@ export function FollowUpCard({ followup, onLogged }: { followup: FollowUp; onLog
       </div>
       <div className="ml-auto flex shrink-0 items-center gap-2">
         <button
+          suppressHydrationWarning
           type="button"
           disabled={state === "logging"}
           onClick={log}
@@ -98,6 +99,7 @@ export function FollowUpCard({ followup, onLogged }: { followup: FollowUp; onLog
           </a>
         )}
         <button
+          suppressHydrationWarning
           type="button"
           disabled={state === "logging" || followup.num == null}
           onClick={() => setShowNextDate(true)}

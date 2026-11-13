@@ -51,6 +51,7 @@ export function ApplyButton({
   }
   return (
     <button
+      suppressHydrationWarning
       type="button"
       onClick={() => start(dest, company)}
       className={

@@ -27,7 +27,7 @@ export function Button({
   className,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>) {
-  return <button className={cn(buttonVariants({ variant, size }), className)} {...props} />;
+  return <button suppressHydrationWarning className={cn(buttonVariants({ variant, size }), className)} {...props} />;
 }
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>;

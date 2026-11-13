@@ -256,7 +256,7 @@ export function TodayDashboard({
       {dataError && !dataLoading && (
         <div role="alert" className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-surface/40 px-5 py-4 text-sm text-muted">
           <p>{missingSources} could not be loaded.</p>
-          <button type="button" onClick={refetch} className="font-medium text-brand-text hover:underline">Retry updates</button>
+          <button suppressHydrationWarning type="button" onClick={refetch} className="font-medium text-brand-text hover:underline">Retry updates</button>
         </div>
       )}
 
@@ -369,11 +369,11 @@ export function TodayDashboard({
               <span className="text-muted" role="status">{decisionUndo.label}</span>
               {decisionUndo.error && <p role="alert" className="text-red-700 dark:text-red-400">{decisionUndo.error}</p>}
             </div>
-            <button type="button" onClick={() => void undoDecision(decisionUndo)} disabled={decisionUndo.busy} aria-busy={Boolean(decisionUndo.busy)} className="inline-flex shrink-0 items-center gap-1 font-medium text-brand-text disabled:opacity-50 max-sm:min-h-[44px]">
+            <button suppressHydrationWarning type="button" onClick={() => void undoDecision(decisionUndo)} disabled={decisionUndo.busy} aria-busy={Boolean(decisionUndo.busy)} className="inline-flex shrink-0 items-center gap-1 font-medium text-brand-text disabled:opacity-50 max-sm:min-h-[44px]">
               <Undo2 className="size-3.5" /> {decisionUndo.busy ? "Undoing…" : decisionUndo.error ? "Retry undo" : "Undo"}
             </button>
             {decisionUndo.error && (
-              <button type="button" onClick={() => setDecisionUndo(null)} aria-label="Dismiss" className="inline-flex shrink-0 items-center text-faint hover:text-muted max-sm:min-h-[44px] max-sm:min-w-[44px] max-sm:justify-center">
+              <button suppressHydrationWarning type="button" onClick={() => setDecisionUndo(null)} aria-label="Dismiss" className="inline-flex shrink-0 items-center text-faint hover:text-muted max-sm:min-h-[44px] max-sm:min-w-[44px] max-sm:justify-center">
                 <X className="size-3.5" />
               </button>
             )}

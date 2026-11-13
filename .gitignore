@@ -310,3 +310,9 @@ data/interview-prep/
 .next/
 web/.next/
 web/out/
+
+# Local caches and config
+/.browsers/
+/.npm-cache/
+.npmrc
+

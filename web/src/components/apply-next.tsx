@@ -36,6 +36,7 @@ export function ApplyNext({
   }
   return (
     <button
+      suppressHydrationWarning
       type="button"
       onClick={() => start(dest, company)}
       className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition hover:bg-brand-200 max-sm:min-h-[44px]"

@@ -105,6 +105,7 @@ export function DecisionCard({ app, reason, onDecided }: { app: Application; rea
           <FileText className="size-3.5" /> Review
         </Link>
         <button
+          suppressHydrationWarning
           type="button"
           disabled={!!busy}
           onClick={() => setStatus("Discarded")}
@@ -114,6 +115,7 @@ export function DecisionCard({ app, reason, onDecided }: { app: Application; rea
         </button>
         {!askApplied && (
           <button
+            suppressHydrationWarning
             type="button"
             disabled={!!busy}
             onClick={() => {
@@ -132,6 +134,7 @@ export function DecisionCard({ app, reason, onDecided }: { app: Application; rea
           <p className="text-xs text-foreground">{appliedWriteAllowed({ status: "Applied", confirmed: false }).prompt}</p>
           <div className="mt-2 flex items-center gap-2">
             <button
+              suppressHydrationWarning
               ref={appliedYesRef}
               type="button"
               disabled={!!busy}
@@ -145,6 +148,7 @@ export function DecisionCard({ app, reason, onDecided }: { app: Application; rea
               {appliedWriteAllowed({ status: "Applied", confirmed: false }).yesLabel}
             </button>
             <button
+              suppressHydrationWarning
               type="button"
               disabled={!!busy}
               onClick={() => setAskApplied(false)}
@@ -158,7 +162,7 @@ export function DecisionCard({ app, reason, onDecided }: { app: Application; rea
       {error && (
         <div role="alert" className="flex items-start gap-2 text-xs text-red-700 dark:text-red-400">
           <p className="min-w-0 flex-1">{error}</p>
-          {failedStatus && <button type="button" disabled={!!busy} onClick={() => setStatus(failedStatus)} className="shrink-0 underline disabled:opacity-60 max-sm:min-h-[44px]">Retry</button>}
+          {failedStatus && <button suppressHydrationWarning type="button" disabled={!!busy} onClick={() => setStatus(failedStatus)} className="shrink-0 underline disabled:opacity-60 max-sm:min-h-[44px]">Retry</button>}
         </div>
       )}
     </div>

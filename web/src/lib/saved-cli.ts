@@ -54,8 +54,8 @@ function isCliEntry(c: unknown): c is { id: string; installed?: boolean } {
  * reinstall in flight, a PATH not yet refreshed) is enough to trigger it.
  */
 // /api/clis is a synchronous PATH scan — no subprocesses — so this is slack,
-// not an estimate.
-const CLIS_TIMEOUT_MS = 5000;
+// not an estimate. Generous timeout to allow on-demand compilation during dev cold start.
+const CLIS_TIMEOUT_MS = 30000;
 
 export async function resolveCliId(
   onStale?: (stale: string, replacement: string | null) => void,

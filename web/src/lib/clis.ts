@@ -80,6 +80,7 @@ export const KNOWN: CliSpec[] = [
 function searchDirs(): string[] {
   const home = os.homedir();
   const extra = [
+    path.join(careerOpsRoot(), "bin"),
     path.join(home, ".local/bin"),
     path.join(home, ".grok/bin"), // Grok Build CLI
     path.join(home, ".npm-global/bin"),

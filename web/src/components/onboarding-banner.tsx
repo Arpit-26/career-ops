@@ -34,7 +34,7 @@ export function OnboardingBanner() {
     let live = true;
     // The assistant sends with the saved id, so a pick that could not be
     // saved (blocked storage) does not count either.
-    resolveCliId().then((id) => { if (live) setCli(!!id && readSavedCliId() === id); });
+    resolveCliId().then((id) => { if (live) setCli(!!id && readSavedCliId() === id); }).catch(() => {});
     // Re-read after setup changes. router.refresh() keeps this component's
     // state, so a dismissal for the old missing set would otherwise stick.
     const refresh = () => {

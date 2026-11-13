@@ -39,7 +39,7 @@ export function OnboardingProgress({ compact = false }: { compact?: boolean }) {
     let live = true;
     // The assistant sends with the saved id, so a pick that could not be
     // saved (blocked storage) does not count either.
-    resolveCliId().then((id) => { if (live) setCli(!!id && readSavedCliId() === id); });
+    resolveCliId().then((id) => { if (live) setCli(!!id && readSavedCliId() === id); }).catch(() => {});
     refetch();
     window.addEventListener("co-onboarding-changed", refetch);
     window.addEventListener("co-job-done", refetch);
@@ -63,6 +63,7 @@ export function OnboardingProgress({ compact = false }: { compact?: boolean }) {
     return (
       <button
         type="button"
+        suppressHydrationWarning
         onClick={() => setOptionalOpen(true)}
         className="text-sm font-medium text-muted underline-offset-2 hover:text-brand-text hover:underline"
       >
@@ -84,7 +85,7 @@ export function OnboardingProgress({ compact = false }: { compact?: boolean }) {
         {panel.mode === "checklist" ? (
           <span className="font-mono text-xs text-muted">{done}/{total}</span>
         ) : (
-          <button type="button" onClick={() => setOptionalOpen(false)} className="text-xs text-muted hover:text-foreground">
+          <button type="button" suppressHydrationWarning onClick={() => setOptionalOpen(false)} className="text-xs text-muted hover:text-foreground">
             Hide
           </button>
         )}
@@ -109,6 +110,8 @@ export function OnboardingProgress({ compact = false }: { compact?: boolean }) {
 
       {cli !== false ? (
         <button
+          type="button"
+          suppressHydrationWarning
           disabled={cli === null}
           onClick={() => window.dispatchEvent(new CustomEvent("co-assistant", { detail: { message: kickoff } }))}
           className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand-200 disabled:cursor-wait disabled:opacity-60"

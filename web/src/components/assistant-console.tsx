@@ -825,6 +825,7 @@ export function AssistantConsole() {
       {!open && (
         <button
           ref={openerRef}
+          suppressHydrationWarning
           onClick={(e) => openAssistant(e.currentTarget)}
           onPointerEnter={loadMarkdown}
           onFocus={loadMarkdown}

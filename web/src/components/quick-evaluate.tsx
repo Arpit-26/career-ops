@@ -32,6 +32,7 @@ export function QuickEvaluate() {
       <div className="flex max-w-xl items-center gap-2 rounded-full border border-border bg-surface/70 py-1.5 pl-4 pr-1.5 shadow-sm focus-within:border-brand/50">
         <Sparkles className="size-4 shrink-0 text-brand-text/70" />
         <input
+          suppressHydrationWarning
           value={url}
           onChange={(e) => {
             setUrl(e.target.value);
@@ -44,6 +45,7 @@ export function QuickEvaluate() {
           className="min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-faint"
         />
         <button
+          suppressHydrationWarning
           onClick={run}
           className="shrink-0 rounded-full bg-brand px-4 py-1.5 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand-200"
         >

@@ -77,6 +77,7 @@ export function CommandPalette({ followupsEnabled }: { followupsEnabled: boolean
   return (
     <>
       <button
+        suppressHydrationWarning
         type="button"
         onClick={open}
         aria-label="Search"
